@@ -8,14 +8,9 @@ interface LcProductProps {
 }
 
 export function LcProduct({ product, children }: LcProductProps) {
-  const imgSize = {
-    md: "224px",
-    default: "160px",
-  };
-
   return (
     <div
-      className={`flex md:flex-col flex-row justify-between h-[${imgSize.default}] w-[80vw] md:h-[400px] md:w-[${imgSize.md}] rounded overflow-hidden`}
+      className={`flex md:flex-col flex-row justify-between h-[160px] w-[80vw] md:h-[400px] md:w-[224px] rounded overflow-hidden`}
       style={{
         boxShadow: "0rem 0rem .25rem 0rem",
       }}
@@ -23,10 +18,10 @@ export function LcProduct({ product, children }: LcProductProps) {
       <div className="w-full h-full flex flex-row md:flex-col justify-between relative">
         <div className="flex-grow flex md:flex-col flex-row">
           <div
-            className={`bg-white h-[${imgSize.default}] w-[${imgSize.default}] md:h-[${imgSize.md}] md:w-[${imgSize.md}]`}
+            className={`bg-white h-[160px] w-[160px] md:h-[224px] md:w-[224px]`}
           >
             <div
-              className={`bg-white h-[${imgSize.default}] w-[${imgSize.default}] md:h-[${imgSize.md}] md:w-[${imgSize.md}]`}
+              className={`bg-white h-[160px] w-[160px] md:h-[224px] md:w-[224px]`}
             >
               <img
                 className="w-full h-full"
