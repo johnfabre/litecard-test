@@ -72,7 +72,7 @@ export function LcAddToCart({ product }: LcAddToCartProps) {
     ></LcButton>
   ) : (
     <LcButton
-      className="w-full bg-green-800 rounded-none"
+      className="w-full bg-green-800 text-gray-100 rounded-none"
       text="Add to cart"
       onClick={addToCart}
     ></LcButton>

@@ -28,7 +28,7 @@ export function LcDialog({ onConfirm, onCancel, children }: LcDialogProps) {
               Cancel
             </button>
             <button
-              className="bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+              className="bg-green-800 text-gray-100 active:bg-green-600 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
               type="button"
               onClick={onConfirm}
             >

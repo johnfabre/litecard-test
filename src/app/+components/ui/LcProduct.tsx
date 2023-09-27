@@ -37,7 +37,7 @@ export function LcProduct({ product, children }: LcProductProps) {
           <div className="p-4 w-full h-full">
             <div className="">
               <p className="line-clamp-2">{product.title}</p>
-              <p className="font-semibold mb-2 text-lime-400">
+              <p className="font-bold mb-2 text-lime-500">
                 ${product.price.toFixed(2)}
               </p>
               <p className="text-xs">
