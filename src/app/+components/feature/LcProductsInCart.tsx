@@ -29,9 +29,9 @@ export function LcProductsInCartImpl() {
   const { findById } = useProducts();
   const { carts, setLastCartProductCount } = useCarts();
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
-  const [productIdToRemove, setProductIdToRemove] = useState<number | null>(
-    null
-  );
+  const [productToRemove, setProductToRemove] = useState<
+    ProductInCart | undefined
+  >(undefined);
   const [productsInCartState, setProductsInCartState] = useState<
     ProductInCart[] | undefined
   >();
@@ -100,7 +100,9 @@ export function LcProductsInCartImpl() {
     setProductsInCartState((prevState) => {
       if (quantity === 0) {
         setShowConfirmDialog(true);
-        setProductIdToRemove(productId);
+        setProductToRemove(
+          productsInCartState?.find(({ id }) => id === productId)
+        );
       }
       return prevState?.map((product) =>
         product.id === productId ? { ...product, quantity } : product
@@ -109,16 +111,21 @@ export function LcProductsInCartImpl() {
   };
 
   const cancelRemoveProductFromCart = () => {
-    if (productIdToRemove !== null && productIdToRemove !== undefined) {
-      setCount(productIdToRemove, 1);
+    if (productToRemove !== null && productToRemove !== undefined) {
+      setCount(productToRemove.id, 1);
     }
     setShowConfirmDialog(false);
   };
 
   const removeProductFromCart = () => {
-    setProductsInCartState((prevState) => {
-      return prevState?.filter((product) => product.id !== productIdToRemove);
-    });
+    if (productToRemove) {
+      setProductsInCartState((prevState) => {
+        return prevState?.filter(
+          (product) => product.id !== productToRemove.id
+        );
+      });
+    }
+
     setShowConfirmDialog(false);
   };
 
@@ -152,7 +159,9 @@ export function LcProductsInCartImpl() {
                         Remove this product from cart?
                       </p>
                       <div className="flex justify-content-center">
-                        <LcProduct product={productInCart} />
+                        {productToRemove && (
+                          <LcProduct product={productToRemove} />
+                        )}
                       </div>
                     </LcDialog>
                   )}
