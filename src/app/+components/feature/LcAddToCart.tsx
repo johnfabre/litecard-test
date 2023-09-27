@@ -2,6 +2,7 @@
 
 import { useCarts } from "@/app/+context/cart.context";
 import { API_URLS } from "@/app/+definitions/api.definition";
+import { useState } from "react";
 import { Product } from "../../+definitions/product.definition";
 import { LcButton } from "../dom/LcButton";
 
@@ -11,6 +12,8 @@ interface LcAddToCartProps {
 
 export function LcAddToCart({ product }: LcAddToCartProps) {
   const { carts, refetch } = useCarts();
+  const [isLoading, setIsLoading] = useState(false);
+  const [tick, setTick] = useState(false);
 
   const addToCart = async () => {
     if (!carts) {
@@ -36,6 +39,7 @@ export function LcAddToCart({ product }: LcAddToCartProps) {
       });
     }
 
+    setIsLoading(true);
     // Send updated cart data to API
     const url = API_URLS.cart.updateCart.replace("{cartId}", `${cart.id}`);
     const response = await fetch(url, {
@@ -47,10 +51,26 @@ export function LcAddToCart({ product }: LcAddToCartProps) {
     });
 
     const data = await response.json();
+    setIsLoading(false);
+    setTick(true);
+    setTimeout(() => {
+      setTick(false);
+    }, 1500);
+
     refetch();
   };
 
-  return (
+  return isLoading ? (
+    <LcButton
+      className="w-full bg-green-800 rounded-none bg-gray-200 dark:bg-gray-700 animate-pulse inline"
+      text="Adding to cart"
+    ></LcButton>
+  ) : tick ? (
+    <LcButton
+      className="w-full bg-green-800 rounded-none bg-green-200 dark:bg-green-700 animate-pulse inline"
+      text="OK"
+    ></LcButton>
+  ) : (
     <LcButton
       className="w-full bg-green-800 rounded-none"
       text="Add to cart"
