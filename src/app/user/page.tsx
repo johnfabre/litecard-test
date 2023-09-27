@@ -1,7 +1,5 @@
+import LcPageUser from "../+components/pages/user.page";
+
 export default function Page() {
-  return (
-    <div>
-      Hi mom <i className="fa fa-user" />
-    </div>
-  );
+  return <LcPageUser />;
 }
