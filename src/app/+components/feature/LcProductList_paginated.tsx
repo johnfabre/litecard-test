@@ -8,7 +8,7 @@ import { LcButton } from "../dom/LcButton";
 import { LcProduct } from "../ui/LcProduct";
 import { LcAddToCart } from "./LcAddToCart";
 
-export function LcProductList() {
+export function LcProductListPaginated() {
   return (
     <UserProvider>
       <CartProvider>
