@@ -1,5 +1,13 @@
-import LcPageCart from "../+components/pages/cart.page";
+import { LcCartProductList } from "../+common/components/feature/carts/LcCartProductList";
+import { LcPageTitle } from "../+common/components/ui/LcPageTitle";
 
-export default function Page() {
-  return <LcPageCart />;
+export default async function CartPage() {
+  return (
+    <>
+      <div className="flex flex-col">
+        <LcPageTitle title="Review your cart" />
+        <LcCartProductList />
+      </div>
+    </>
+  );
 }
